@@ -32,6 +32,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
         h1 {{ font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }}
         .content {{ font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }}
         .back-link {{ display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }}
+        .comment-section {{ margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }}
     </style>
 </head>
 <body>
@@ -42,6 +43,25 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     <div class="content">
         {content.replace('\n', '<br>')}
     </div>
+
+    <div class="comment-section">
+        <script src="https://giscus.app/client.js"
+                data-repo="kimsungwuk/chloekim"
+                data-repo-id="R_kgDON-fHUA"
+                data-category="Announcements"
+                data-category-id="DIC_kwDON-fHUM4CnS_4"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="light"
+                data-lang="ko"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
 </body>
