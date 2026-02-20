@@ -25,7 +25,6 @@ def get_link_metadata(url):
         title = title_meta["content"] if title_meta else "Google Play Store"
         image = image_meta["content"] if image_meta else ""
         
-        # 제목이 너무 길면 자르기
         if len(title) > 50:
             title = title[:47] + "..."
             
@@ -35,7 +34,6 @@ def get_link_metadata(url):
         return {"title": "Google Play Store", "image": ""}
 
 def auto_link_and_format(text):
-    # 구글 플레이 스토어 링크 패턴
     url_pattern = r'(https?://play\.google\.com/store/apps/details\?id=[^\s\n<]+)'
     
     def replace_with_rich_preview(match):
@@ -57,12 +55,7 @@ def auto_link_and_format(text):
         </div>
         """
 
-    # 1. 플레이스토어 링크 변환
     text = re.sub(url_pattern, replace_with_rich_preview, text)
-    
-    # 2. 일반 링크 처리 (이미 변환된 건 제외)
-    # (생략: 이번엔 플레이스토어 리치 카드에 집중)
-    
     return text.replace('\n', '<br>')
 
 def build_post(title, content, category, summary, image_url, date=None):
@@ -97,9 +90,12 @@ def build_post(title, content, category, summary, image_url, date=None):
         f.write(rendered)
     
     return {
-        "title": title, "date": date, "category": category,
+        "title": title,
+        "date": date,
+        "category": category,
         "summary": summary or (content[:100] + "..."),
-        "image": image_url, "url": f"posts/{filename}"
+        "image": image_url,
+        "url": f"posts/{filename}"
     }
 
 def rebuild_all():
@@ -120,6 +116,16 @@ def rebuild_all():
         p_info = build_post(post["title"], post["content"], post["category"], post["summary"], post["image_url"], post.get("date"))
         processed_posts.append(p_info)
     
+    # Update index.html
+    update_index(processed_posts)
+    
+    # [FIX] Generate SEO files
+    generate_robots_txt()
+    generate_sitemap(processed_posts)
+
+    print("🚀 [Engine] Rebuilt with SEO tags and Sitemap.")
+
+def update_index(processed_posts):
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
@@ -135,7 +141,22 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] Rebuilt with Rich Link Preview support.")
+def generate_robots_txt():
+    content = f"User-agent: *\nAllow: /\nSitemap: {CONFIG['base_url']}/sitemap.xml\n"
+    with open(os.path.join(BASE_DIR, "robots.txt"), "w") as f:
+        f.write(content)
+
+def generate_sitemap(posts):
+    base_url = CONFIG['base_url']
+    today = datetime.date.today().isoformat()
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{base_url}/</loc><lastmod>{today}</lastmod><priority>1.0</priority></url>"""
+    for post in posts:
+        xml += f"\n  <url><loc>{base_url}/{post['url']}</loc><lastmod>{post['date']}</lastmod><priority>0.8</priority></url>"
+    xml += "\n</urlset>"
+    with open(os.path.join(BASE_DIR, "sitemap.xml"), "w") as f:
+        f.write(xml)
 
 if __name__ == "__main__":
     rebuild_all()
