@@ -13,16 +13,14 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    # post_id must be stable to match Giscus discussions
-    # We use a hash of the title to keep it unique but ASCII safe
-    post_id = hashlib.md5(title.encode()).hexdigest()[:12]
-    filename = f"post-{date}-{post_id}.html"
+    post_hash = hashlib.md5(title.encode()).hexdigest()[:12]
+    filename = f"post-{date}-{post_hash}.html"
     
     # 이미지 태그
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
     # 방문자 카운터 배지
-    visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{post_id}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
+    visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{post_hash}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
 
     # 템플릿 로드
     with open(os.path.join(BASE_DIR, "templates/post_layout.html"), "r", encoding="utf-8") as f:
@@ -37,7 +35,14 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])\
-                       .replace("{{post_id}}", post_id)
+                       .replace("{{post_id}}", post_hash)\
+                       .replace("{{g_repo_id}}", CONFIG["giscus"]["repo_id"])\
+                       .replace("{{g_category}}", CONFIG["giscus"]["category"])\
+                       .replace("{{g_category_id}}", CONFIG["giscus"]["category_id"])\
+                       .replace("{{g_mapping}}", CONFIG["giscus"]["mapping"])\
+                       .replace("{{g_reactions}}", CONFIG["giscus"]["reactions_enabled"])\
+                       .replace("{{g_theme}}", CONFIG["giscus"]["theme"])\
+                       .replace("{{g_lang}}", CONFIG["giscus"]["lang"])
 
     # 파일 저장
     output_path = os.path.join(BASE_DIR, f"posts/{filename}")
@@ -94,7 +99,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] Final Robust Rebuild with 'Specific Term' mapping.")
+    print("🚀 [Engine] Site rebuilt with General category and dynamic settings.")
 
 if __name__ == "__main__":
     rebuild_all()
