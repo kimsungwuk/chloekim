@@ -10,32 +10,34 @@ def create_post(title, content):
     filename = f"{today}-{title.replace(' ', '-').lower()}.html"
     filepath = os.path.join(posts_dir, filename)
     
-    # 2. HTML 템플릿 작성 (특수문자/이모티콘 제외)
+    # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용)
     html_template = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} - Chloe Dev Log</title>
+    <title>{title} - Chloe Dev Log</title>
     <style>
-        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }}
-        .content {{ background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
-        h1 {{ color: #1a237e; border-bottom: 2px solid #e8eaf6; padding-bottom: 10px; }}
-        .date {{ color: #888; font-size: 0.9rem; }}
-        .back-link {{ display: inline-block; margin-top: 30px; text-decoration: none; color: #3f51b5; font-weight: bold; }}
-        .adsense-placeholder {{ background: #eee; border: 2px dashed #ccc; padding: 20px; text-align: center; color: #999; margin: 20px 0; border-radius: 10px; }}
+        :root {{ --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }}
+        body {{ font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }}
+        .container {{ max-width: 680px; margin: 0 auto; padding: 80px 20px; }}
+        .meta {{ font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }}
+        h1 {{ font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }}
+        .content {{ font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }}
+        .back-link {{ display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }}
+        .adsense-area {{ background: #f5f5f7; border-radius: 12px; padding: 30px; text-align: center; color: #d2d2d7; margin: 40px 0; font-size: 14px; }}
     </style>
 </head>
 <body>
-<div class="content">
+<div class="container">
+    <div class="meta">{today}</div>
     <h1>{title}</h1>
-    <p class="date">작성일: {today}</p>
-    <div class="adsense-placeholder">Google AdSense AD</div>
-    <div class="post-body">
+    <div class="adsense-area">Google AdSense Placement</div>
+    <div class="content">
         {content.replace('\n', '<br>')}
     </div>
-    <div class="adsense-placeholder">Google AdSense AD</div>
-    <a href="../index.html" class="back-link">&larr; 목록으로 돌아가기</a>
+    <div class="adsense-area">Google AdSense Placement</div>
+    <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
 </body>
 </html>"""

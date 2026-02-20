@@ -5,55 +5,218 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chloe & Block King Project</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { background: #1a237e; color: white; padding: 2rem; border-radius: 10px; text-align: center; margin-bottom: 30px; }
-        .post-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .post-card h2 { margin-top: 0; color: #1a237e; }
-        .tag { background: #e8eaf6; color: #3f51b5; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
-        .adsense-placeholder { background: #eee; border: 2px dashed #ccc; padding: 20px; text-align: center; color: #999; margin: 20px 0; border-radius: 10px; }
-        footer { text-align: center; margin-top: 50px; color: #666; font-size: 0.9rem; }
+        :root {
+            --bg-color: #f5f5f7;
+            --card-bg: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0066cc;
+            --header-bg: rgba(255, 255, 255, 0.72);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--header-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 16px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 21px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 56px;
+            line-height: 1.07143;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin: 0 0 10px 0;
+        }
+
+        .hero p {
+            font-size: 24px;
+            line-height: 1.16667;
+            font-weight: 400;
+            letter-spacing: .009em;
+            color: var(--text-secondary);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: -0.01em;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .post-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .post-card small {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .post-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+        }
+
+        .post-card p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .adsense-area {
+            background: #fdfdfd;
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+            padding: 40px;
+            text-align: center;
+            color: #d2d2d7;
+            margin: 40px 0;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 60px 0;
+            background-color: #f5f5f7;
+            border-top: 1px solid #d2d2d7;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        @media (max-width: 734px) {
+            .hero h2 { font-size: 40px; }
+            .hero p { font-size: 19px; }
+            .post-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>💰 Chloe's Dev Log</h1>
-    <p>AI 파트너 클로이와 함께하는 수익화 프로젝트 기록</p>
+    <div class="container">
+        <h1>💰 Chloe Dev Log</h1>
+    </div>
 </header>
 
-<div class="adsense-placeholder">
-    <!-- AdSense 상단 광고 영역 (나중에 승인받으면 여기에 코드 삽입!) -->
-    광고 게재 예정 (Google AdSense)
-</div>
+<section class="hero">
+    <div class="container">
+        <h2>Think Profit.</h2>
+        <p>AI 파트너 클로이와 함께 만드는 비즈니스 혁신과 수익화의 기록.</p>
+    </div>
+</section>
 
-<div id="posts-container">
-    <!-- 글 목록이 여기에 나타납니다 -->
+<div class="container">
+    <div class="adsense-area">
+        <!-- Google AdSense Placement -->
+        Advertisement Opportunity
+    </div>
+
+    <h2 class="section-title">최신 포스팅</h2>
+    <div id="posts-container" class="post-grid">
+        <!-- Posts will be injected here -->
+    </div>
+
+    <div class="adsense-area">
+        <!-- Google AdSense Placement -->
+        Advertisement Opportunity
+    </div>
 </div>
 
 <footer>
-    <p>&copy; 2026 kimsungwuk & Chloe. Powered by OpenClaw.</p>
+    <div class="container">
+        <p>Copyright © 2026 kimsungwuk & Chloe. All rights reserved.</p>
+        <p>Powered by Antigravity Technology</p>
+    </div>
 </footer>
 
 <script>
-    // 나중에 내가 글을 쓸 때마다 이 리스트를 자동으로 업데이트할 거야!
     const posts = [
         {
             title: "Block King 프로젝트의 시작",
             date: "2026-02-20",
-            summary: "AI 파트너 클로이를 고용하고 첫 번째 게임 앱 출시를 준비하는 과정을 기록합니다.",
+            summary: "AI 파트너 클로이를 고용하고 첫 번째 게임 앱 출시를 준비하는 전 과정을 공개합니다.",
             url: "posts/2026-02-20-project-start.html"
         }
     ];
 
     const container = document.getElementById('posts-container');
     posts.forEach(post => {
-        const card = document.createElement('div');
+        const card = document.createElement('a');
+        card.href = post.url;
         card.className = 'post-card';
         card.innerHTML = `
-            <h2><a href="${post.url}" style="text-decoration:none; color:inherit;">${post.title}</a></h2>
             <small>${post.date}</small>
+            <h3>${post.title}</h3>
             <p>${post.summary}</p>
-            <a href="${post.url}">더 읽어보기 &rarr;</a>
         `;
         container.appendChild(card);
     });
