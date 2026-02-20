@@ -32,16 +32,18 @@
     </div>
 
     <div class="comment-section">
-        <div class="giscus"></div>
         <script src="https://giscus.app/client.js"
                 data-repo="{{g_repo}}"
                 data-repo-id="{{g_repo_id}}"
                 data-category="{{g_category}}"
                 data-category-id="{{g_category_id}}"
-                data-mapping="{{g_mapping}}"
-                data-reactions-enabled="{{g_reactions}}"
-                data-theme="{{g_theme}}"
-                data-lang="{{g_lang}}"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="ko"
                 crossorigin="anonymous"
                 async>
         </script>
