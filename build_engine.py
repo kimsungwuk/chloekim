@@ -13,7 +13,7 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    # Safe filename for filesystem
+    # [수정] 파일명은 사람이 읽기 편한 날짜형식 유지
     post_hash = hashlib.md5(title.encode()).hexdigest()[:8]
     filename = f"post-{date}-{post_hash}.html"
     
@@ -36,17 +36,7 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{visitor_badge}}", visitor_badge)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])\
-                       .replace("{{post_id}}", post_hash)\
-                       .replace("{{v_style}}", CONFIG["visitor_counter"]["style"])\
-                       .replace("{{v_color}}", CONFIG["visitor_counter"]["color"])\
-                       .replace("{{g_repo}}", CONFIG["giscus"]["repo"])\
-                       .replace("{{g_repo_id}}", CONFIG["giscus"]["repo_id"])\
-                       .replace("{{g_category}}", CONFIG["giscus"]["category"])\
-                       .replace("{{g_category_id}}", CONFIG["giscus"]["category_id"])\
-                       .replace("{{g_mapping}}", CONFIG["giscus"]["mapping"])\
-                       .replace("{{g_reactions}}", CONFIG["giscus"]["reactions_enabled"])\
-                       .replace("{{g_theme}}", CONFIG["giscus"]["theme"])\
-                       .replace("{{g_lang}}", CONFIG["giscus"]["lang"])
+                       .replace("{{post_id}}", post_hash)
 
     # 파일 저장
     output_path = os.path.join(BASE_DIR, f"posts/{filename}")
@@ -87,7 +77,7 @@ def rebuild_all():
         )
         processed_posts.append(p_info)
     
-    # Update index.html
+    # index.html 업데이트
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
@@ -103,7 +93,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] Site rebuilt with Giscus (Reactions Enabled).")
+    print("🚀 [Engine] Final build completed with robust Giscus integration.")
 
 if __name__ == "__main__":
     rebuild_all()

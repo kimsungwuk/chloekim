@@ -12,7 +12,7 @@
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
-        .comment-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e5e5e5; min-height: 250px; }
+        .comment-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e5e5e5; min-height: 300px; }
         .visitor-badge { margin-bottom: 20px; }
     </style>
 </head>
@@ -32,20 +32,21 @@
     </div>
 
     <div class="comment-section">
-        <!-- Giscus System (Restored per User Request with safe settings) -->
+        <!-- Giscus Container: Must be present for the widget to render -->
+        <div class="giscus"></div>
         <script src="https://giscus.app/client.js"
                 data-repo="kimsungwuk/chloekim"
                 data-repo-id="R_kgDORUWviQ"
                 data-category="General"
                 data-category-id="DIC_kwDORUWvic4C206U"
-                data-mapping="pathname"
+                data-mapping="title"
                 data-strict="0"
                 data-reactions-enabled="1"
                 data-emit-metadata="0"
                 data-input-position="bottom"
-                data-theme="preferred_color_scheme"
+                data-theme="light"
                 data-lang="ko"
-                async>
+                crossorigin="anonymous">
         </script>
     </div>
 
