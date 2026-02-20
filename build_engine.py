@@ -2,6 +2,7 @@ import os
 import json
 import datetime
 import re
+import hashlib
 
 # 설정 로드
 BASE_DIR = "/Users/kimsungwuk/StudioProjects/chloe-blog"
@@ -12,12 +13,13 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    # Use English-only IDs for filenames to ensure maximum compatibility with GitHub Pages
-    # We'll generate a slug from the title, but if it's Korean, we'll use a generic ID or allow user to provide one
-    # For now, let's just make sure we don't have '/' or other problematic chars.
-    # To be safe with Korean, we'll keep them but ensure clean encoding.
-    post_id = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip().replace(' ', '-').lower()
-    filename = f"{date}-{post_id}.html"
+    # Safe filename for filesystem
+    safe_title = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip().replace(' ', '-')
+    filename = f"{date}-{safe_title.lower()}.html"
+    
+    # Unique ID for hits counter (ASCII only to avoid 404)
+    # Using MD5 hash of title for a clean, safe path
+    post_id_hash = hashlib.md5(title.encode()).hexdigest()[:10]
     
     # 이미지 태그
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
@@ -34,7 +36,7 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{content}}", content.replace('\n', '<br>'))\
                        .replace("{{image_tag}}", image_tag)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])\
-                       .replace("{{post_id}}", post_id)\
+                       .replace("{{post_id}}", post_id_hash)\
                        .replace("{{v_style}}", CONFIG["visitor_counter"]["style"])\
                        .replace("{{v_color}}", CONFIG["visitor_counter"]["color"])\
                        .replace("{{g_repo}}", CONFIG["giscus"]["repo"])\
@@ -67,9 +69,12 @@ def rebuild_all():
     
     # Clear old posts to avoid ghost files
     posts_dir = os.path.join(BASE_DIR, "posts")
-    for f_name in os.listdir(posts_dir):
-        if f_name.endswith(".html"):
-            os.remove(os.path.join(posts_dir, f_name))
+    if os.path.exists(posts_dir):
+        for f_name in os.listdir(posts_dir):
+            if f_name.endswith(".html"):
+                os.remove(os.path.join(posts_dir, f_name))
+    else:
+        os.makedirs(posts_dir)
 
     processed_posts = []
     for post in posts_data:
@@ -100,7 +105,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] All posts cleaned and rebuilt successfully.")
+    print("🚀 [Engine] All posts rebuilt with safe ASCII post_ids.")
 
 if __name__ == "__main__":
     rebuild_all()
