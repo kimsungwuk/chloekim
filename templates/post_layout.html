@@ -12,7 +12,7 @@
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
-        .comment-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e5e5e5; min-height: 250px; }
+        .comment-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
     </style>
 </head>
@@ -32,20 +32,11 @@
     </div>
 
     <div class="comment-section">
-        <!-- Giscus Injection Target -->
-        <div class="giscus"></div>
-        <script src="https://giscus.app/client.js"
-                data-repo="{{g_repo}}"
-                data-repo-id="{{g_repo_id}}"
-                data-category="{{g_category}}"
-                data-category-id="{{g_category_id}}"
-                data-mapping="{{g_mapping}}"
-                data-strict="0"
-                data-reactions-enabled="{{g_reactions}}"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="{{g_theme}}"
-                data-lang="{{g_lang}}"
+        <!-- Final Robust Comment System: Utterances -->
+        <script src="https://utteranc.es/client.js"
+                repo="kimsungwuk/chloekim"
+                issue-term="pathname"
+                theme="github-light"
                 async>
         </script>
     </div>
