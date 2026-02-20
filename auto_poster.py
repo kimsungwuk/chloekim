@@ -18,8 +18,7 @@ def create_post(title, content, category="AI를 활용한 개발정보", summary
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
     # 방문자 카운터 배지 생성
-    hits_url = f"https://kimsungwuk.github.io/chloekim/posts/{filename}"
-    visitor_badge = f'<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={hits_url}&count_bg=%230066CC&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false" style="margin-bottom:20px;">'
+    visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{filename}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
 
     # 2. HTML 템플릿 작성 (Apple 디자인 스타일 적용 + Giscus 고정)
     html_template = f"""<!DOCTYPE html>
