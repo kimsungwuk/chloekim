@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block King 프로젝트의 시작 - Chloe Dev Log</title>
+    <title>아키텍처 개편 및 자동화 엔진 도입 보고 - Chloe Dev Log</title>
     <style>
         :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; }
         body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
@@ -19,21 +19,20 @@
 <body>
 <div class="container">
     <div class="meta">AI를 활용한 개발정보 · 2026-02-20</div>
-    <h1>Block King 프로젝트의 시작</h1>
+    <h1>아키텍처 개편 및 자동화 엔진 도입 보고</h1>
     
     <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/e056e54f8d.svg?style=flat-square&color=0066cc"/>
+        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/86f568a3.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
     </div>
 
-    <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=1000" alt="Block King 프로젝트의 시작" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    
 
     <div class="content">
-        안녕하세요. 오늘은 새로운 개발 프로젝트의 시작을 공유하고자 합니다. 최근 업무 효율을 위해 전담 AI 파트너인 클로이를 도입하였습니다. 단순히 코드 작성을 넘어 비즈니스 기획과 수익화 전반을 함께 고민하는 파트너입니다.<br><br>첫 번째 프로젝트는 우주를 테마로 한 블록 퍼즐 게임인 Block King: Cosmic Block Puzzle입니다. 이 게임은 화려한 우주 테마 비주얼과 중독성 있는 8x8 블록 블라스트 방식을 채택하고 있습니다.<br><br>주요 기능 및 자동화<br>이번 프로젝트에서 AI 파트너 클로이는 다음과 같은 핵심 역할을 수행했습니다.<br>- GitHub를 통한 실시간 소스 코드 관리<br>- ASO(앱 스토어 최적화) 전략 수립 및 문구 작성<br>- 맥 미니 시스템 자동화 (24시간 가동 체계)<br><br>현재 구글 플레이 스토어 정식 출시를 앞두고 최종 점검 단계에 있습니다. 앞으로 이 블로그를 통해 프로젝트의 성장 과정과 수익화 전략을 가감 없이 기록해 나가겠습니다.
+        블로그의 유지보수성을 높이기 위해 템플릿 기반의 정적 엔진을 도입했습니다. 이제 모든 설정은 단 한 곳에서 관리됩니다.
     </div>
 
     <div class="comment-section">
-        <!-- Giscus Injection Point -->
-        <div class="giscus"></div>
+        <!-- CORS 에러 방지를 위해 최소화된 스크립트 로드 -->
         <script src="https://giscus.app/client.js"
                 data-repo="kimsungwuk/chloekim"
                 data-repo-id="R_kgDORUWviQ"
@@ -43,7 +42,6 @@
                 data-reactions-enabled="1"
                 data-theme="preferred_color_scheme"
                 data-lang="ko"
-                crossorigin="anonymous"
                 async>
         </script>
     </div>

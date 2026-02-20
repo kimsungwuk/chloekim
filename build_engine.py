@@ -13,17 +13,16 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    # Safe filename for filesystem
-    safe_title = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip().replace(' ', '-')
-    filename = f"{date}-{safe_title.lower()}.html"
-    
-    # Unique ID for hits counter (ASCII only to avoid 404)
-    # Using MD5 hash of title for a clean, safe path
-    post_id_hash = hashlib.md5(title.encode()).hexdigest()[:10]
+    # [수정] 파일명을 완전히 안전한 영문/숫자 해시로 변경 (CORS 및 404 완벽 방지)
+    post_hash = hashlib.md5(title.encode()).hexdigest()[:8]
+    filename = f"post-{date}-{post_hash}.html"
     
     # 이미지 태그
     image_tag = f'<img src="{image_url}" alt="{title}" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">' if image_url else ""
     
+    # 방문자 카운터 배지 (안전한 post_hash 사용)
+    visitor_badge = f'<img src="https://hits.dwyl.com/kimsungwuk/chloekim/{post_hash}.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">'
+
     # 템플릿 로드
     with open(os.path.join(BASE_DIR, "templates/post_layout.html"), "r", encoding="utf-8") as f:
         template = f.read()
@@ -35,8 +34,9 @@ def build_post(title, content, category, summary, image_url, date=None):
                        .replace("{{date}}", date)\
                        .replace("{{content}}", content.replace('\n', '<br>'))\
                        .replace("{{image_tag}}", image_tag)\
+                       .replace("{{visitor_badge}}", visitor_badge)\
                        .replace("{{github_repo}}", CONFIG["github_repo"])\
-                       .replace("{{post_id}}", post_id_hash)\
+                       .replace("{{post_id}}", post_hash)\
                        .replace("{{v_style}}", CONFIG["visitor_counter"]["style"])\
                        .replace("{{v_color}}", CONFIG["visitor_counter"]["color"])\
                        .replace("{{g_repo}}", CONFIG["giscus"]["repo"])\
@@ -67,14 +67,15 @@ def rebuild_all():
     with open(data_path, "r", encoding="utf-8") as f:
         posts_data = json.load(f)
     
-    # Clear old posts to avoid ghost files
+    # posts 디렉토리가 없으면 생성
     posts_dir = os.path.join(BASE_DIR, "posts")
-    if os.path.exists(posts_dir):
-        for f_name in os.listdir(posts_dir):
-            if f_name.endswith(".html"):
-                os.remove(os.path.join(posts_dir, f_name))
-    else:
+    if not os.path.exists(posts_dir):
         os.makedirs(posts_dir)
+    
+    # [중요] 기존의 한글 파일들을 깃허브에서도 지우기 위해 로컬에서 먼저 삭제
+    for f_name in os.listdir(posts_dir):
+        if f_name.endswith(".html"):
+            os.remove(os.path.join(posts_dir, f_name))
 
     processed_posts = []
     for post in posts_data:
@@ -88,14 +89,13 @@ def rebuild_all():
         )
         processed_posts.append(p_info)
     
-    # Update index.html
+    # index.html 업데이트
     index_path = os.path.join(BASE_DIR, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
     
     start_marker = "const posts = ["
     end_marker = "];"
-    
     start_idx = html.find(start_marker)
     end_idx = html.find(end_marker, start_idx)
     
@@ -105,7 +105,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] All posts rebuilt with safe ASCII post_ids.")
+    print("🚀 [Engine] Site rebuilt with 100% safe ASCII filenames.")
 
 if __name__ == "__main__":
     rebuild_all()

@@ -22,7 +22,7 @@
     <h1>{{title}}</h1>
     
     <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/{{github_repo}}/{{post_id}}.svg?style={{v_style}}&color={{v_color}}"/>
+        {{visitor_badge}}
     </div>
 
     {{image_tag}}
@@ -32,8 +32,7 @@
     </div>
 
     <div class="comment-section">
-        <!-- Giscus Injection Point -->
-        <div class="giscus"></div>
+        <!-- CORS 에러 방지를 위해 최소화된 스크립트 로드 -->
         <script src="https://giscus.app/client.js"
                 data-repo="{{g_repo}}"
                 data-repo-id="{{g_repo_id}}"
@@ -43,7 +42,6 @@
                 data-reactions-enabled="{{g_reactions}}"
                 data-theme="{{g_theme}}"
                 data-lang="{{g_lang}}"
-                crossorigin="anonymous"
                 async>
         </script>
     </div>
