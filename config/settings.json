@@ -8,7 +8,7 @@
         "repo_id": "R_kgDORUWviQ",
         "category": "General",
         "category_id": "DIC_kwDORUWvic4C206U",
-        "mapping": "title",
+        "mapping": "pathname",
         "reactions_enabled": "1",
         "theme": "preferred_color_scheme",
         "lang": "ko"
