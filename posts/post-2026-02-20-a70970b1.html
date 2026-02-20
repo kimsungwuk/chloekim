@@ -26,12 +26,14 @@
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* App Card UI */
-        .app-card { background: #f5f5f7; border-radius: 20px; padding: 30px; margin: 40px 0; display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #d2d2d7; }
-        .app-card-info strong { display: block; font-size: 20px; margin-bottom: 5px; }
-        .app-card-info p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
-        .app-download-btn { background: var(--accent-color); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background 0.2s; }
-        .app-download-btn:hover { background: #004499; }
+        /* Rich Link Preview Card (SNS Style) */
+        .rich-link-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; margin: 30px 0; max-width: 500px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .rich-link-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
+        .card-image { width: 100%; height: 260px; background-size: cover; background-position: center; background-color: #f5f5f7; border-bottom: 1px solid #f0f0f0; }
+        .card-body { padding: 15px 20px; }
+        .card-title { font-size: 17px; font-weight: 600; color: #1d1d1f; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-url { font-size: 13px; color: var(--text-secondary); }
 
         .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
@@ -51,7 +53,7 @@
     <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&q=80&w=1000" alt="한 붓 그리기의 정수: 원라인 마스터(One Line Master) 리뷰" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
 
     <div class="content">
-        오늘 리뷰할 앱은 직관적인 조작과 깊이 있는 두뇌 회전을 동시에 경험할 수 있는 퍼즐 게임, 원라인 마스터(One Line Master)입니다. <br><br>이 게임의 기본 규칙은 매우 명쾌합니다. 화면에 배치된 모든 점을 단 한 번의 연속된 선으로 연결하는 것입니다. 이른바 한 붓 그리기 방식의 퍼즐로, 남녀노소 누구나 쉽게 시작할 수 있는 접근성을 갖추고 있습니다.<br><br>하지만 게임이 진행될수록 설계의 정교함이 돋보입니다. 초반에는 단순한 도형으로 시작하지만, 단계가 올라갈수록 선의 방향과 순서를 치밀하게 계산해야 하는 고급 퍼즐이 등장합니다. 모든 레벨은 반드시 단 한 번의 스트로크로 해결 가능하도록 설계되어 있어, 해결했을 때의 성취감이 상당합니다.<br><br>비주얼 측면에서는 네온 글로우(Neon Glow) 스타일의 깔끔한 그래픽을 채택하여 우주 공간과 같은 신비로운 분위기를 연출했습니다. 화려한 색감은 게임의 몰입도를 높여주며, 퍼즐을 푸는 과정 자체를 시각적으로도 즐겁게 만듭니다.<br><br>또한 이 게임은 오프라인 플레이를 완벽하게 지원합니다. 인터넷 연결 없이도 언제 어디서나 두뇌 트레이닝을 즐길 수 있다는 점은 큰 장점입니다. 만약 어려운 난관에 봉착하더라도 준비된 힌트 시스템을 통해 지능적으로 문제를 해결해 나갈 수 있습니다.<br><br>단순함 속에서 사고의 확장을 이끌어내는 원라인 마스터는 집중력 향상과 논리적 사고를 원하는 유저들에게 훌륭한 선택지가 될 것입니다. 현재 구글 플레이 스토어에서 무료로 다운로드할 수 있습니다.<br><br>구글 플레이 스토어에서 보기: <br>            <div class="app-card"><br>                <div class="app-card-info"><br>                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play" style="width:64px; height:64px; margin: 0 auto 15px auto; box-shadow:none; border-radius:0;"><br>                    <strong>Google Play Store</strong><br>                    <p>지금 바로 다운로드하여 플레이해보세요.</p><br>                </div><br>                <a href="https://play.google.com/store/apps/details?id=com.hjhyhwsw.onelinemaster" target="_blank" class="app-download-btn">앱 설치하기</a><br>            </div><br>            
+        오늘 리뷰할 앱은 직관적인 조작과 깊이 있는 두뇌 회전을 동시에 경험할 수 있는 퍼즐 게임, 원라인 마스터(One Line Master)입니다. <br><br>이 게임의 기본 규칙은 매우 명쾌합니다. 화면에 배치된 모든 점을 단 한 번의 연속된 선으로 연결하는 것입니다. 이른바 한 붓 그리기 방식의 퍼즐로, 남녀노소 누구나 쉽게 시작할 수 있는 접근성을 갖추고 있습니다.<br><br>하지만 게임이 진행될수록 설계의 정교함이 돋보입니다. 초반에는 단순한 도형으로 시작하지만, 단계가 올라갈수록 선의 방향과 순서를 치밀하게 계산해야 하는 고급 퍼즐이 등장합니다. 모든 레벨은 반드시 단 한 번의 스트로크로 해결 가능하도록 설계되어 있어, 해결했을 때의 성취감이 상당합니다.<br><br>비주얼 측면에서는 네온 글로우(Neon Glow) 스타일의 깔끔한 그래픽을 채택하여 우주 공간과 같은 신비로운 분위기를 연출했습니다. 화려한 색감은 게임의 몰입도를 높여주며, 퍼즐을 푸는 과정 자체를 시각적으로도 즐겁게 만듭니다.<br><br>또한 이 게임은 오프라인 플레이를 완벽하게 지원합니다. 인터넷 연결 없이도 언제 어디서나 두뇌 트레이닝을 즐길 수 있다는 점은 큰 장점입니다. 만약 어려운 난관에 봉착하더라도 준비된 힌트 시스템을 통해 지능적으로 문제를 해결해 나갈 수 있습니다.<br><br>단순함 속에서 사고의 확장을 이끌어내는 원라인 마스터는 집중력 향상과 논리적 사고를 원하는 유저들에게 훌륭한 선택지가 될 것입니다. 현재 구글 플레이 스토어에서 무료로 다운로드할 수 있습니다.<br><br>구글 플레이 스토어에서 보기: <br>        <div class="rich-link-card"><br>            <a href="https://play.google.com/store/apps/details?id=com.hjhyhwsw.onelinemaster" target="_blank"><br>                <div class="card-image" style="background-image: url('https://play-lh.googleusercontent.com/eOEiLqeOFhBfPTTnOIX1IFETbtRidlsXYTJnAbpL1VT7YwhBQ8JDgUpzubQHca8nLO4OiFfeHWzDUjCvdDe8Xw');"></div><br>                <div class="card-body"><br>                    <div class="card-title">One Line Master - Apps on Google Play</div><br>                    <div class="card-url">play.google.com</div><br>                </div><br>            </a><br>        </div><br>        
     </div>
 
     <div class="comment-section">

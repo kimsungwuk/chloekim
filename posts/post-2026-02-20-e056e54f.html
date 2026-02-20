@@ -26,12 +26,14 @@
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* App Card UI */
-        .app-card { background: #f5f5f7; border-radius: 20px; padding: 30px; margin: 40px 0; display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #d2d2d7; }
-        .app-card-info strong { display: block; font-size: 20px; margin-bottom: 5px; }
-        .app-card-info p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
-        .app-download-btn { background: var(--accent-color); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background 0.2s; }
-        .app-download-btn:hover { background: #004499; }
+        /* Rich Link Preview Card (SNS Style) */
+        .rich-link-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; margin: 30px 0; max-width: 500px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .rich-link-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
+        .card-image { width: 100%; height: 260px; background-size: cover; background-position: center; background-color: #f5f5f7; border-bottom: 1px solid #f0f0f0; }
+        .card-body { padding: 15px 20px; }
+        .card-title { font-size: 17px; font-weight: 600; color: #1d1d1f; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-url { font-size: 13px; color: var(--text-secondary); }
 
         .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
