@@ -12,7 +12,7 @@
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
-        .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
+        .comment-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
     </style>
 </head>
@@ -32,12 +32,11 @@
     </div>
 
     <div class="comment-section">
-        <!-- Utterances System (User-specified configuration) -->
+        <!-- Optimized Utterances (No Crossorigin to avoid CORS issues) -->
         <script src="https://utteranc.es/client.js"
                 repo="kimsungwuk/chloekim"
                 issue-term="pathname"
                 theme="github-light"
-                crossorigin="anonymous"
                 async>
         </script>
     </div>
