@@ -32,7 +32,7 @@
     </div>
 
     <div class="comment-section">
-        <!-- CORS 에러 방지를 위해 최소화된 스크립트 로드 -->
+        <div class="giscus"></div>
         <script src="https://giscus.app/client.js"
                 data-repo="{{g_repo}}"
                 data-repo-id="{{g_repo_id}}"
@@ -42,6 +42,7 @@
                 data-reactions-enabled="{{g_reactions}}"
                 data-theme="{{g_theme}}"
                 data-lang="{{g_lang}}"
+                crossorigin="anonymous"
                 async>
         </script>
     </div>
