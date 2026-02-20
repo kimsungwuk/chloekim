@@ -25,18 +25,15 @@ def create_post(title, content):
         h1 {{ font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }}
         .content {{ font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }}
         .back-link {{ display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }}
-        .adsense-area {{ background: #f5f5f7; border-radius: 12px; padding: 30px; text-align: center; color: #d2d2d7; margin: 40px 0; font-size: 14px; }}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="meta">{today}</div>
     <h1>{title}</h1>
-    <div class="adsense-area">Google AdSense Placement</div>
     <div class="content">
         {content.replace('\n', '<br>')}
     </div>
-    <div class="adsense-area">Google AdSense Placement</div>
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
 </body>
