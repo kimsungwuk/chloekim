@@ -12,8 +12,10 @@ def build_post(title, content, category, summary, image_url, date=None):
     if not date:
         date = datetime.date.today().isoformat()
     
-    # Safe filename for GitHub Pages (avoiding Korean characters if possible, or ensuring standard format)
-    # Using title for ID to keep counter consistent
+    # Use English-only IDs for filenames to ensure maximum compatibility with GitHub Pages
+    # We'll generate a slug from the title, but if it's Korean, we'll use a generic ID or allow user to provide one
+    # For now, let's just make sure we don't have '/' or other problematic chars.
+    # To be safe with Korean, we'll keep them but ensure clean encoding.
     post_id = re.sub(r'[^\w\s-]', '', title.replace('/', '-')).strip().replace(' ', '-').lower()
     filename = f"{date}-{post_id}.html"
     
@@ -63,6 +65,12 @@ def rebuild_all():
     with open(data_path, "r", encoding="utf-8") as f:
         posts_data = json.load(f)
     
+    # Clear old posts to avoid ghost files
+    posts_dir = os.path.join(BASE_DIR, "posts")
+    for f_name in os.listdir(posts_dir):
+        if f_name.endswith(".html"):
+            os.remove(os.path.join(posts_dir, f_name))
+
     processed_posts = []
     for post in posts_data:
         p_info = build_post(
@@ -80,7 +88,6 @@ def rebuild_all():
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
     
-    # Clear and update posts array in JS
     start_marker = "const posts = ["
     end_marker = "];"
     
@@ -93,7 +100,7 @@ def rebuild_all():
         with open(index_path, "w", encoding="utf-8") as f:
             f.write(new_html)
 
-    print("🚀 [Engine] All posts and index rebuilt successfully.")
+    print("🚀 [Engine] All posts cleaned and rebuilt successfully.")
 
 if __name__ == "__main__":
     rebuild_all()
