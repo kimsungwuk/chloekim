@@ -86,6 +86,34 @@
             letter-spacing: -0.01em;
         }
 
+        .categories {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .category-pill {
+            background: white;
+            border: 1px solid #d2d2d7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .category-pill:hover, .category-pill.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+
         .post-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -165,6 +193,13 @@
 
 <div class="container">
     <h2 class="section-title">최신 포스팅</h2>
+    
+    <div class="categories">
+        <a href="#" class="category-pill active" onclick="filterCategory('all')">전체</a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스</a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보</a>
+    </div>
+
     <div id="posts-container" class="post-grid">
         <!-- Posts will be injected here -->
     </div>
@@ -182,23 +217,44 @@
         {
             title: "Block King 프로젝트의 시작",
             date: "2026-02-20",
+            category: "AI를 활용한 개발정보",
             summary: "AI 파트너 클로이를 고용하고 첫 번째 게임 앱 출시를 준비하는 전 과정을 공개합니다.",
             url: "posts/2026-02-20-project-start.html"
         }
     ];
 
-    const container = document.getElementById('posts-container');
-    posts.forEach(post => {
-        const card = document.createElement('a');
-        card.href = post.url;
-        card.className = 'post-card';
-        card.innerHTML = `
-            <small>${post.date}</small>
-            <h3>${post.title}</h3>
-            <p>${post.summary}</p>
-        `;
-        container.appendChild(card);
-    });
+    function renderPosts(filter = 'all') {
+        const container = document.getElementById('posts-container');
+        container.innerHTML = '';
+        
+        posts.forEach(post => {
+            if (filter !== 'all' && post.category !== filter) return;
+
+            const card = document.createElement('a');
+            card.href = post.url;
+            card.className = 'post-card';
+            card.innerHTML = `
+                <small>${post.category} · ${post.date}</small>
+                <h3>${post.title}</h3>
+                <p>${post.summary}</p>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterCategory(category) {
+        event.preventDefault();
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.classList.remove('active');
+            if (pill.innerText === category || (category === 'all' && pill.innerText === '전체')) {
+                pill.classList.add('active');
+            }
+        });
+        renderPosts(category);
+    }
+
+    // Initial render
+    renderPosts();
 </script>
 
 </body>

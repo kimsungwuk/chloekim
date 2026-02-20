@@ -1,7 +1,7 @@
 import os
 import datetime
 
-def create_post(title, content):
+def create_post(title, content, category="AI를 활용한 개발정보", summary=""):
     base_dir = "/Users/kimsungwuk/StudioProjects/chloe-blog"
     posts_dir = os.path.join(base_dir, "posts")
     
@@ -29,7 +29,7 @@ def create_post(title, content):
 </head>
 <body>
 <div class="container">
-    <div class="meta">{today}</div>
+    <div class="meta">{category} · {today}</div>
     <h1>{title}</h1>
     <div class="content">
         {content.replace('\n', '<br>')}
@@ -42,7 +42,26 @@ def create_post(title, content):
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html_template)
     
-    print(f"💰 [성공] 새 포스팅 생성 완료: {filename}")
+    # 3. index.html 업데이트 (자동으로 posts 배열에 추가)
+    index_path = os.path.join(base_dir, "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        content_index = f.read()
+
+    new_post_json = f"""{{
+            title: "{title}",
+            date: "{today}",
+            category: "{category}",
+            summary: "{summary or (content[:100] + '...')}",
+            url: "posts/{filename}"
+        }},"""
+    
+    # posts 배열의 시작 부분에 삽입
+    updated_index = content_index.replace("const posts = [", f"const posts = [\n        {new_post_json}")
+    
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(updated_index)
+
+    print(f"💰 [성공] 새 포스팅 생성 및 인덱스 업데이트 완료: {filename}")
     return filename
 
 if __name__ == "__main__":
