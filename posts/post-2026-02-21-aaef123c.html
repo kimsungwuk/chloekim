@@ -14,7 +14,7 @@
     <!-- Open Graph (SNS Sharing) -->
     <meta property="og:title" content="제4강. 멀티 채널 연동: 텔레그램을 비즈니스 관제실로">
     <meta property="og:description" content="에이전트를 외부 메신저와 연결하여 언제 어디서나 시스템을 모니터링하고 명령을 내리는 멀티 채널 구축 기법을 설명합니다.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1520923642038-b4259ace9439?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=1000">
     <meta property="og:url" content="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-aaef123c.html">
     <meta property="og:type" content="article">
     
@@ -151,10 +151,10 @@
         <img src="https://hits.dwyl.com/kimsungwuk/chloekim/aaef123c.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
     </div>
 
-    <img src="https://images.unsplash.com/photo-1520923642038-b4259ace9439?auto=format&fit=crop&q=80&w=1000" alt="제4강. 멀티 채널 연동: 텔레그램을 비즈니스 관제실로" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=1000" alt="제4강. 멀티 채널 연동: 텔레그램을 비즈니스 관제실로" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
 
     <div class="content">
-        진정한 자동화 기지는 장소에 구애받지 않고 통제할 수 있어야 합니다. OpenClaw는 텔레그램, 슬랙, 디스코드 등 다양한 채널을 통해 에이전트와 대화할 수 있는 멀티 채널 연동 기능을 제공합니다.<br><br>1. 채널 활성화 구조<br>OpenClaw의 게이트웨이는 다양한 메시징 프로토콜을 공통된 인터페이스로 변환해 줍니다. 개발자는 봇 토큰만 설정하면 복잡한 연동 로직 없이도 즉시 에이전트를 외부로 노출할 수 있습니다.<br><br>2. 텔레그램 봇 연동 사례<br>텔레그램 봇을 생성하고 OpenClaw에 등록하는 과정은 다음과 같습니다.<br>- BotFather를 통해 봇 생성 및 API 토큰 획득.<br>- openclaw.json 설정 파일의 channels 섹션에 토큰 입력.<br><br>3. 기기 페어링 및 승인 (Pairing)<br>보안을 위해 처음 외부 채널에서 말을 걸면 시스템은 승인 코드를 요구합니다.<br>페어링 대기 목록 확인: openclaw pairing list<br>기기 승인 <br>        <div class="code-container"><br>            <span class="code-text" id="code-b47d53">openclaw pairing approve <채널이름> <코드></span><br>            <button class="copy-btn" onclick="copyToClipboard('code-b47d53')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>4. 원격 명령 실행 및 결과 수신<br>연동이 완료되면 스마트폰의 텔레그램 앱에서 바로 에이전트에게 명령을 내릴 수 있습니다.<br>예시: "블로그에 최신 AI 뉴스 하나 올려줘"<br>에이전트는 맥 미니의 브라우저를 열어 글을 쓰고, 결과를 텔레그램 메시지로 다시 보고합니다.<br><br>5. 푸시 알림 및 모니터링<br>에이전트가 백그라운드에서 작업을 완료하거나 오류가 발생했을 때, 채널을 통해 실시간 알림을 보낼 수 있습니다. 이는 24시간 가동되는 무인 시스템 운영의 필수 요소입니다.<br><br>다음 강의에서는 외부 노출에 따른 보안 리스크를 관리하는 Node Permission 시스템에 대해 깊이 있게 분석해 보겠습니다.<br><br><a href="../posts/post-2026-02-21-c85a0b4b.html">목차로 돌아가기</a>
+        진정한 자동화 기지는 장소에 구애받지 않고 통제할 수 있어야 합니다. OpenClaw는 텔레그램, 슬랙, 디스코드 등 다양한 채널을 통해 에이전트와 대화할 수 있는 멀티 채널 연동 기능을 제공합니다.<br><br>1. 채널 활성화 구조<br>OpenClaw의 게이트웨이는 다양한 메시징 프로토콜을 공통된 인터페이스로 변환해 줍니다. 개발자는 봇 토큰만 설정하면 복잡한 연동 로직 없이도 즉시 에이전트를 외부로 노출할 수 있습니다.<br><br>2. 텔레그램 봇 연동 사례<br>텔레그램 봇을 생성하고 OpenClaw에 등록하는 과정은 다음과 같습니다.<br>- BotFather를 통해 봇 생성 및 API 토큰 획득.<br>- openclaw.json 설정 파일의 channels 섹션에 토큰 입력.<br><br>3. 기기 페어링 및 승인 (Pairing)<br>보안을 위해 처음 외부 채널에서 말을 걸면 시스템은 승인 코드를 요구합니다.<br>페어링 대기 목록 확인: openclaw pairing list<br>기기 승인 <br>        <div class="code-container"><br>            <span class="code-text" id="code-2ec796">openclaw pairing approve telegram <CODE></span><br>            <button class="copy-btn" onclick="copyToClipboard('code-2ec796')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>4. 원격 명령 실행 및 결과 수신<br>연동이 완료되면 스마트폰의 텔레그램 앱에서 바로 에이전트에게 명령을 내릴 수 있습니다.<br>예시: "블로그에 최신 AI 뉴스 하나 올려줘"<br>에이전트는 맥 미니의 브라우저를 열어 글을 쓰고, 결과를 텔레그램 메시지로 다시 보고합니다.<br><br>5. 푸시 알림 및 모니터링<br>에이전트가 백그라운드에서 작업을 완료하거나 오류가 발생했을 때, 채널을 통해 실시간 알림을 보낼 수 있습니다. 이는 24시간 가동되는 무인 시스템 운영의 필수 요소입니다.
     </div>
 
     <div class="comment-section">

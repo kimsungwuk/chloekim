@@ -14,7 +14,7 @@
     <!-- Open Graph (SNS Sharing) -->
     <meta property="og:title" content="제1강. OpenClaw 개요: 왜 단순한 챗봇이 아닌가?">
     <meta property="og:description" content="OpenClaw의 분산 아키텍처와 게이트웨이, 노드, 에이전트의 핵심 개념을 분석합니다.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=1000">
     <meta property="og:url" content="https://kimsungwuk.github.io/chloekim/posts/post-2026-02-21-63b1d429.html">
     <meta property="og:type" content="article">
     
@@ -151,10 +151,10 @@
         <img src="https://hits.dwyl.com/kimsungwuk/chloekim/63b1d429.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
     </div>
 
-    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="제1강. OpenClaw 개요: 왜 단순한 챗봇이 아닌가?" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=1000" alt="제1강. OpenClaw 개요: 왜 단순한 챗봇이 아닌가?" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
 
     <div class="content">
-        OpenClaw를 처음 접하는 개발자들이 흔히 하는 오해는 이를 단순한 LLM 기반의 챗봇으로 생각하는 것입니다. 하지만 OpenClaw의 본질은 사용자의 로컬 리소스를 안전하고 자유롭게 제어할 수 있는 분산 에이전트 운영체제에 가깝습니다.<br><br>OpenClaw는 크게 세 가지 핵심 구성 요소로 이루어져 있습니다.<br><br>첫 번째는 게이트웨이(Gateway)입니다. 시스템의 심장 역할을 하며 모든 통신을 중계합니다. 외부 채널(텔레그램, 슬랙 등)로부터 들어오는 명령을 수신하고 적절한 에이전트에게 전달하며, 보안 인증과 세션 관리를 전담합니다.<br><br>두 번째는 노드(Node)입니다. 에이전트의 실제 손과 발이 되어주는 장치입니다. 맥 미니의 파일 시스템, 카메라, 마이크, 브라우저 제어 권한 등이 이 노드를 통해 제공됩니다. OpenClaw의 강력함은 바로 이 노드 기술을 통해 에이전트가 가상 공간을 넘어 실제 하드웨어를 조작할 수 있다는 점에 있습니다.<br><br>세 번째는 에이전트(Agent)입니다. 시스템의 두뇌로, LLM의 추론 능력을 바탕으로 사용자의 의도를 분석하고 목표를 달성하기 위해 어떤 도구(Tools)를 어떤 순서로 사용할지 결정합니다.<br><br>기존의 챗봇 서비스들이 클라우드 안에서 텍스트 데이터만 주고받는다면, OpenClaw는 여러분의 로컬 환경에 상주하며 직접 파일을 수정하고, 코드를 빌드하고, 배포까지 수행하는 진정한 의미의 AI 파트너입니다. <br><br>다음 강의에서는 이 강력한 도구를 실제로 설치하고 초기화하는 과정을 상세히 다루어 보겠습니다.<br><br><a href="post-2026-02-21-63b1d429.html">목차로 돌아가기</a>
+        OpenClaw를 처음 접하는 개발자들이 흔히 하는 오해는 이를 단순한 LLM 기반의 챗봇으로 생각하는 것입니다. 하지만 OpenClaw의 본질은 사용자의 로컬 리소스를 안전하고 자유롭게 제어할 수 있는 분산 에이전트 운영체제에 가깝습니다.<br><br>OpenClaw는 크게 세 가지 핵심 구성 요소로 이루어져 있습니다.<br><br>첫 번째는 게이트웨이(Gateway)입니다. 시스템의 심장 역할을 하며 모든 통신을 중계합니다. 외부 채널(텔레그램, 슬랙 등)로부터 들어오는 명령을 수신하고 적절한 에이전트에게 전달하며, 보안 인증과 세션 관리를 전담합니다.<br><br>두 번째는 노드(Node)입니다. 에이전트의 실제 손과 발이 되어주는 장치입니다. 맥 미니의 파일 시스템, 카메라, 마이크, 브라우저 제어 권한 등이 이 노드를 통해 제공됩니다. OpenClaw의 강력함은 바로 이 노드 기술을 통해 에이전트가 가상 공간을 넘어 실제 하드웨어를 조작할 수 있다는 점에 있습니다.<br><br>세 번째는 에이전트(Agent)입니다. 시스템의 두뇌로, LLM의 추론 능력을 바탕으로 사용자의 의도를 분석하고 목표를 달성하기 위해 어떤 도구(Tools)를 어떤 순서로 사용할지 결정합니다.<br><br>기존의 챗봇 서비스들이 클라우드 안에서 텍스트 데이터만 주고받는다면, OpenClaw는 여러분의 로컬 환경에 상주하며 직접 파일을 수정하고, 코드를 빌드하고, 배포까지 수행하는 진정한 의미의 AI 파트너입니다. <br><br>다음 강의에서는 이 강력한 도구를 실제로 설치하고 초기화하는 과정을 상세히 다루어 보겠습니다.
     </div>
 
     <div class="comment-section">
