@@ -122,12 +122,25 @@
             transition: all 0.2s;
             white-space: nowrap;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .category-pill:hover, .category-pill.active {
             background: var(--text-primary);
             color: white;
             border-color: var(--text-primary);
+        }
+
+        .post-count {
+            font-size: 11px;
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        .category-pill.active .post-count {
+            opacity: 0.8;
         }
 
         .post-grid {
@@ -233,10 +246,10 @@
     <h2 class="section-title">Latest Updates</h2>
     
     <div class="categories">
-        <a href="#" class="category-pill active" onclick="filterCategory('all')">전체</a>
-        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스</a>
-        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보</a>
-        <a href="#" class="category-pill" onclick="filterCategory('OpenClaw')">OpenClaw</a>
+        <a href="#" class="category-pill active" onclick="filterCategory('all')">전체 <span id="count-all" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI 최신뉴스')">AI 최신뉴스 <span id="count-news" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('AI를 활용한 개발정보')">AI를 활용한 개발정보 <span id="count-dev" class="post-count"></span></a>
+        <a href="#" class="category-pill" onclick="filterCategory('OpenClaw')">OpenClaw <span id="count-openclaw" class="post-count"></span></a>
     </div>
 
     <div id="posts-container" class="post-grid">
@@ -442,15 +455,31 @@
         event.preventDefault();
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.classList.remove('active');
-            if (pill.innerText === category || (category === 'all' && pill.innerText === '전체')) {
+            // Check if the pill text starts with the category name (to ignore the count span)
+            if (pill.innerText.startsWith(category) || (category === 'all' && pill.innerText.startsWith('전체'))) {
                 pill.classList.add('active');
             }
         });
         renderPosts(category);
     }
 
+    function updateCounts() {
+        const counts = {
+            all: posts.length,
+            news: posts.filter(p => p.category === 'AI 최신뉴스').length,
+            dev: posts.filter(p => p.category === 'AI를 활용한 개발정보').length,
+            openclaw: posts.filter(p => p.category === 'OpenClaw').length
+        };
+
+        document.getElementById('count-all').innerText = counts.all;
+        document.getElementById('count-news').innerText = counts.news;
+        document.getElementById('count-dev').innerText = counts.dev;
+        document.getElementById('count-openclaw').innerText = counts.openclaw;
+    }
+
     // Initial render
     renderPosts();
+    updateCounts();
 </script>
 
 </body>
