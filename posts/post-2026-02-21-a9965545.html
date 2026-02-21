@@ -19,26 +19,10 @@
     <meta property="og:type" content="article">
     
     <style>
-        :root { 
-            --bg-color: #ffffff; 
-            --text-primary: #1d1d1f; 
-            --text-secondary: #86868b; 
-            --accent-color: #0071e3; 
-            --card-bg: #f5f5f7;
-            --code-bg: #f5f5f7;
-        }
-        
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-
         header {
             position: sticky;
             top: 0;
@@ -49,92 +33,33 @@
             padding: 16px 0;
             text-align: center;
         }
-
-        header h1 {
-            font-size: 14px;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #1d1d1f;
-        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
 
         .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
         .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* Premium Code Block */
-        .code-container {
-            background: var(--code-bg);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin: 20px 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
 
-        .code-text {
-            font-family: "SF Mono", "Fira Code", monospace;
-            font-size: 16px;
-            color: #444;
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-        }
-
-        .copy-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
-        .copy-btn svg { width: 20px; height: 20px; }
-
-        /* Premium App Store Style Card */
-        .rich-link-card { 
-            background: var(--card-bg); 
-            border-radius: 22px; 
-            overflow: hidden; 
-            margin: 40px 0; 
-            max-width: 100%; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
         .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
-        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; background-color: #000; }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
         .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
-        .card-info { flex: 1; margin-right: 20px; }
-        .card-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .card-subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
-        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-        .btn-get:hover { background: #0077ed; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
 
-        .back-link { display: block; margin-top: 80px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
         img { max-width: 100%; height: auto; display: block; }
+        
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        @media (max-width: 734px) {
-            h1 { font-size: 34px; }
-            .card-image { height: 200px; }
-            .card-body { flex-direction: column; text-align: center; }
-            .card-info { margin-right: 0; margin-bottom: 15px; }
-        }
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
     </style>
 </head>
 <body>
@@ -146,38 +71,21 @@
 <div class="container">
     <div class="meta">OpenClaw · 2026-02-21</div>
     <h1>제6강. 완전 자동화의 마법: Cron과 Heartbeat</h1>
-    
-    <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/a9965545.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
-    </div>
-
+    <div class="visitor-badge"><img src="https://hits.dwyl.com/kimsungwuk/chloekim/a9965545.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;"></div>
     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000" alt="제6강. 완전 자동화의 마법: Cron과 Heartbeat" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-
-    <div class="content">
-        진정한 무인 수익 자동화는 인간이 잠든 사이에도 에이전트가 스스로 가치를 생산할 때 완성됩니다. OpenClaw는 이를 위해 Cron과 Heartbeat라는 두 가지 강력한 엔진을 제공합니다.<br><br>1. Cron: 정교한 시간 예약 작업<br>특정 날짜나 시간, 혹은 주기적으로 반복되는 작업을 설정할 수 있습니다.<br>작업 추가 <br>        <div class="code-container"><br>            <span class="code-text" id="code-98ca97">openclaw cron add</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-98ca97')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br>작업 목록 확인 <br>        <div class="code-container"><br>            <span class="code-text" id="code-0cf5b4">openclaw cron list</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-0cf5b4')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>예를 들어 매일 아침 8시에 뉴스를 포스팅하는 작업은 다음과 같은 크론 표현식으로 등록됩니다.<br>표현식 예시: "0 0 8 * * *" (매일 08시 00분 00초 실행)<br><br>2. Heartbeat: 지속적인 상태 모니터링<br>하트비트는 에이전트가 살아있는지 주기적으로 확인하고, 특정 조건이 충족되었을 때 선제적으로 행동하게 만드는 장치입니다. 시스템 설정에서 하트비트 간격을 조절하여 에이전트의 '활동성'을 정의할 수 있습니다.<br><br>3. 백그라운드 프로세스 관리<br>에이전트가 긴 시간이 걸리는 작업을 수행할 때, 사용자는 이를 백그라운드로 돌리고 나중에 결과를 보고받을 수 있습니다.<br>프로세스 모니터링 <br>        <div class="code-container"><br>            <span class="code-text" id="code-e2c9bf">openclaw process list</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-e2c9bf')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>4. 자동화 시나리오 설계<br>단순한 일회성 작업이 아니라, 여러 단계로 구성된 파이프라인을 자동화할 수 있습니다.<br>- 1단계: 크론에 의해 작업 시작.<br>- 2단계: 에이전트가 최신 뉴스 크롤링 및 분석.<br>- 3단계: 블로그 엔진을 가동하여 포스팅 생성.<br>- 4단계: 깃허브에 푸시 후 텔레그램으로 완료 보고.<br><br>5. 예외 상황 대응<br>자동화 작업 중 에러가 발생하면 시스템은 자동으로 로그를 기록하고 관리자에게 알림을 보냅니다. 이를 통해 무인 운영 중에도 신속하게 문제를 파악하고 조치할 수 있습니다.
-    </div>
-
+    <div class="content">진정한 무인 수익 자동화는 인간이 잠든 사이에도 에이전트가 스스로 가치를 생산할 때 완성됩니다. OpenClaw는 이를 위해 Cron과 Heartbeat라는 두 가지 강력한 엔진을 제공합니다.<br><br>1. Cron: 정교한 시간 예약 작업<br>특정 날짜나 시간, 혹은 주기적으로 반복되는 작업을 설정할 수 있습니다.<br>작업 추가 <br>        <div class="code-container"><br>            <span class="code-text" id="code-98ca97">openclaw cron add</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-98ca97')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br>작업 목록 확인 <br>        <div class="code-container"><br>            <span class="code-text" id="code-0cf5b4">openclaw cron list</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-0cf5b4')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>예를 들어 매일 아침 8시에 뉴스를 포스팅하는 작업은 다음과 같은 크론 표현식으로 등록됩니다.<br>표현식 예시: "0 0 8 * * *" (매일 08시 00분 00초 실행)<br><br>2. Heartbeat: 지속적인 상태 모니터링<br>하트비트는 에이전트가 살아있는지 주기적으로 확인하고, 특정 조건이 충족되었을 때 선제적으로 행동하게 만드는 장치입니다. 시스템 설정에서 하트비트 간격을 조절하여 에이전트의 '활동성'을 정의할 수 있습니다.<br><br>3. 백그라운드 프로세스 관리<br>에이전트가 긴 시간이 걸리는 작업을 수행할 때, 사용자는 이를 백그라운드로 돌리고 나중에 결과를 보고받을 수 있습니다.<br>프로세스 모니터링 <br>        <div class="code-container"><br>            <span class="code-text" id="code-e2c9bf">openclaw process list</span><br>            <button class="copy-btn" onclick="copyToClipboard('code-e2c9bf')" title="복사하기"><br>                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><br>            </button><br>        </div><br>        <br><br>4. 자동화 시나리오 설계<br>단순한 일회성 작업이 아니라, 여러 단계로 구성된 파이프라인을 자동화할 수 있습니다.<br>- 1단계: 크론에 의해 작업 시작.<br>- 2단계: 에이전트가 최신 뉴스 크롤링 및 분석.<br>- 3단계: 블로그 엔진을 가동하여 포스팅 생성.<br>- 4단계: 깃허브에 푸시 후 텔레그램으로 완료 보고.<br><br>5. 예외 상황 대응<br>자동화 작업 중 에러가 발생하면 시스템은 자동으로 로그를 기록하고 관리자에게 알림을 보냅니다. 이를 통해 무인 운영 중에도 신속하게 문제를 파악하고 조치할 수 있습니다.</div>
     <div class="comment-section">
-        <!-- Utterances System -->
-        <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
     </div>
-
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
-
 <script>
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
             const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
             const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            btn.innerHTML = '✓';
             setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
         });
     }

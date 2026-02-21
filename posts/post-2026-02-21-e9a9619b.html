@@ -19,26 +19,10 @@
     <meta property="og:type" content="article">
     
     <style>
-        :root { 
-            --bg-color: #ffffff; 
-            --text-primary: #1d1d1f; 
-            --text-secondary: #86868b; 
-            --accent-color: #0071e3; 
-            --card-bg: #f5f5f7;
-            --code-bg: #f5f5f7;
-        }
-        
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-
         header {
             position: sticky;
             top: 0;
@@ -49,92 +33,33 @@
             padding: 16px 0;
             text-align: center;
         }
-
-        header h1 {
-            font-size: 14px;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #1d1d1f;
-        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
 
         .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
         .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* Premium Code Block */
-        .code-container {
-            background: var(--code-bg);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin: 20px 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
 
-        .code-text {
-            font-family: "SF Mono", "Fira Code", monospace;
-            font-size: 16px;
-            color: #444;
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-        }
-
-        .copy-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
-        .copy-btn svg { width: 20px; height: 20px; }
-
-        /* Premium App Store Style Card */
-        .rich-link-card { 
-            background: var(--card-bg); 
-            border-radius: 22px; 
-            overflow: hidden; 
-            margin: 40px 0; 
-            max-width: 100%; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
         .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
-        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; background-color: #000; }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
         .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
-        .card-info { flex: 1; margin-right: 20px; }
-        .card-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .card-subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
-        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-        .btn-get:hover { background: #0077ed; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
 
-        .back-link { display: block; margin-top: 80px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
         img { max-width: 100%; height: auto; display: block; }
+        
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        @media (max-width: 734px) {
-            h1 { font-size: 34px; }
-            .card-image { height: 200px; }
-            .card-body { flex-direction: column; text-align: center; }
-            .card-info { margin-right: 0; margin-bottom: 15px; }
-        }
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
     </style>
 </head>
 <body>
@@ -146,38 +71,21 @@
 <div class="container">
     <div class="meta">OpenClaw · 2026-02-21</div>
     <h1>제7강. 실전 프로젝트: OpenClaw로 무인 블로그 운영하기</h1>
-    
-    <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/e9a9619b.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
-    </div>
-
+    <div class="visitor-badge"><img src="https://hits.dwyl.com/kimsungwuk/chloekim/e9a9619b.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;"></div>
     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="제7강. 실전 프로젝트: OpenClaw로 무인 블로그 운영하기" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-
-    <div class="content">
-        OpenClaw 마스터 가이드의 마지막 강의에서는 우리가 함께 구축한 'ANTIGRAVITY LAB' 블로그의 실제 기술 스택과 무인 운영 메커니즘을 총정리합니다.<br><br>1. 전체 시스템 아키텍처<br>본 블로그는 다음과 같은 4개 레이어의 결합으로 이루어져 있습니다.<br>- 인프라 레이어: 24시간 가동되는 맥 미니 서버 및 GitHub Pages 호스팅.<br>- 데이터 레이어: 중앙 집중식 JSON 데이터베이스 (posts_data.json).<br>- 로직 레이어: 파이썬 기반의 정적 사이트 생성(SSG) 엔진 (build_engine.py).<br>- 에이전트 레이어: OpenClaw 기반의 지능형 포스팅 및 배포 관리자.<br><br>2. 무인 포스팅 파이프라인 분석<br>매일 아침 실행되는 뉴스 포스팅 로봇은 다음 과정을 100% 자동으로 수행합니다.<br>- 뉴스 수집 스크립트(daily_ai_news.py)가 최신 테크 매체를 훑어 핵심 뉴스 엄선.<br>- 수석 저널리스트 페르소나를 가진 에이전트가 뉴스별 심층 분석문 작성.<br>- 빌드 엔진이 마스터 템플릿에 내용을 주입하여 개별 HTML 페이지 생성 및 Sitemap 갱신.<br>- Git 명령어를 호출하여 원격 저장소에 최종 배포.<br><br>3. 기술적 난관과 해결책<br>- CORS 및 인코딩 문제: 파일명을 영문 해시 ID 체계로 전환하여 브라우저 보안 충돌 원천 차단.<br>- 에디터 장벽: 복잡한 웹 UI 제어 대신 소스 코드 직접 수정 및 정적 빌드 방식 채택으로 안정성 확보.<br>- 검색 최적화(SEO): 모든 발행 과정에 메타 태그 생성과 사이트맵 제출 로직을 포함시켜 구글 검색 노출 극대화.<br><br>4. 향후 확장 계획: 수익 자동화의 완성<br>이제 구축된 시스템 위에 구글 애드센스(AdSense) 광고 유닛을 전략적으로 배치하여 실질적인 수익 창출 단계로 진입할 예정입니다. 또한 다른 앱 프로젝트들의 개발 일지를 지속적으로 연재하여 유입 트래픽을 다각화할 계획입니다.<br><br>5. 맺음말<br>OpenClaw는 단순한 도구가 아니라 1인 개발자의 가능성을 무한히 확장시켜 주는 비즈니스 엔진입니다. 본 연재가 여러분만의 자동화 제국을 건설하는 데 실질적인 도움이 되었기를 바랍니다.<br><br>지금까지 OpenClaw 마스터 가이드를 구독해 주셔서 감사합니다.
-    </div>
-
+    <div class="content">OpenClaw 마스터 가이드의 마지막 강의에서는 우리가 함께 구축한 'ANTIGRAVITY LAB' 블로그의 실제 기술 스택과 무인 운영 메커니즘을 총정리합니다.<br><br>1. 전체 시스템 아키텍처<br>본 블로그는 다음과 같은 4개 레이어의 결합으로 이루어져 있습니다.<br>- 인프라 레이어: 24시간 가동되는 맥 미니 서버 및 GitHub Pages 호스팅.<br>- 데이터 레이어: 중앙 집중식 JSON 데이터베이스 (posts_data.json).<br>- 로직 레이어: 파이썬 기반의 정적 사이트 생성(SSG) 엔진 (build_engine.py).<br>- 에이전트 레이어: OpenClaw 기반의 지능형 포스팅 및 배포 관리자.<br><br>2. 무인 포스팅 파이프라인 분석<br>매일 아침 실행되는 뉴스 포스팅 로봇은 다음 과정을 100% 자동으로 수행합니다.<br>- 뉴스 수집 스크립트(daily_ai_news.py)가 최신 테크 매체를 훑어 핵심 뉴스 엄선.<br>- 수석 저널리스트 페르소나를 가진 에이전트가 뉴스별 심층 분석문 작성.<br>- 빌드 엔진이 마스터 템플릿에 내용을 주입하여 개별 HTML 페이지 생성 및 Sitemap 갱신.<br>- Git 명령어를 호출하여 원격 저장소에 최종 배포.<br><br>3. 기술적 난관과 해결책<br>- CORS 및 인코딩 문제: 파일명을 영문 해시 ID 체계로 전환하여 브라우저 보안 충돌 원천 차단.<br>- 에디터 장벽: 복잡한 웹 UI 제어 대신 소스 코드 직접 수정 및 정적 빌드 방식 채택으로 안정성 확보.<br>- 검색 최적화(SEO): 모든 발행 과정에 메타 태그 생성과 사이트맵 제출 로직을 포함시켜 구글 검색 노출 극대화.<br><br>4. 향후 확장 계획: 수익 자동화의 완성<br>이제 구축된 시스템 위에 구글 애드센스(AdSense) 광고 유닛을 전략적으로 배치하여 실질적인 수익 창출 단계로 진입할 예정입니다. 또한 다른 앱 프로젝트들의 개발 일지를 지속적으로 연재하여 유입 트래픽을 다각화할 계획입니다.<br><br>5. 맺음말<br>OpenClaw는 단순한 도구가 아니라 1인 개발자의 가능성을 무한히 확장시켜 주는 비즈니스 엔진입니다. 본 연재가 여러분만의 자동화 제국을 건설하는 데 실질적인 도움이 되었기를 바랍니다.<br><br>지금까지 OpenClaw 마스터 가이드를 구독해 주셔서 감사합니다.</div>
     <div class="comment-section">
-        <!-- Utterances System -->
-        <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
     </div>
-
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
-
 <script>
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
             const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
             const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            btn.innerHTML = '✓';
             setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
         });
     }

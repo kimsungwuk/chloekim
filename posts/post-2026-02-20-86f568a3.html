@@ -19,26 +19,10 @@
     <meta property="og:type" content="article">
     
     <style>
-        :root { 
-            --bg-color: #ffffff; 
-            --text-primary: #1d1d1f; 
-            --text-secondary: #86868b; 
-            --accent-color: #0071e3; 
-            --card-bg: #f5f5f7;
-            --code-bg: #f5f5f7;
-        }
-        
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-
         header {
             position: sticky;
             top: 0;
@@ -49,92 +33,33 @@
             padding: 16px 0;
             text-align: center;
         }
-
-        header h1 {
-            font-size: 14px;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #1d1d1f;
-        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
 
         .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
         .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* Premium Code Block */
-        .code-container {
-            background: var(--code-bg);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin: 20px 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
 
-        .code-text {
-            font-family: "SF Mono", "Fira Code", monospace;
-            font-size: 16px;
-            color: #444;
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-        }
-
-        .copy-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
-        .copy-btn svg { width: 20px; height: 20px; }
-
-        /* Premium App Store Style Card */
-        .rich-link-card { 
-            background: var(--card-bg); 
-            border-radius: 22px; 
-            overflow: hidden; 
-            margin: 40px 0; 
-            max-width: 100%; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
         .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
-        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; background-color: #000; }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
         .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
-        .card-info { flex: 1; margin-right: 20px; }
-        .card-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .card-subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
-        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-        .btn-get:hover { background: #0077ed; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
 
-        .back-link { display: block; margin-top: 80px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
         img { max-width: 100%; height: auto; display: block; }
+        
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        @media (max-width: 734px) {
-            h1 { font-size: 34px; }
-            .card-image { height: 200px; }
-            .card-body { flex-direction: column; text-align: center; }
-            .card-info { margin-right: 0; margin-bottom: 15px; }
-        }
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
     </style>
 </head>
 <body>
@@ -146,38 +71,21 @@
 <div class="container">
     <div class="meta">AI를 활용한 개발정보 · 2026-02-20</div>
     <h1>아키텍처 개편 및 자동화 엔진 도입 보고</h1>
-    
-    <div class="visitor-badge">
-        <img src="https://hits.dwyl.com/kimsungwuk/chloekim/86f568a3.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;">
-    </div>
-
+    <div class="visitor-badge"><img src="https://hits.dwyl.com/kimsungwuk/chloekim/86f568a3.svg?style=flat-square&color=0066cc" style="margin-bottom:20px;"></div>
     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000" alt="아키텍처 개편 및 자동화 엔진 도입 보고" style="width:100%; border-radius:18px; margin-bottom:40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-
-    <div class="content">
-        최근 1인 개발자와 비즈니스 운영자들에게 가장 큰 화두는 업무의 자동화와 효율성입니다. 저 역시 전담 AI 파트너인 클로이를 도입하였습니다. 단순히 코드 작성을 넘어 비즈니스 기획과 수익화 전반을 함께 고민하는 파트너입니다.<br><br>초기 단계에서 저희는 네이버와 티스토리 등 기존 블로그 플랫폼의 자동화를 시도했습니다. 하지만 현대적인 웹 에디터의 복잡한 보안 체계와 에이전트 차단 로직은 100% 무인 운영에 큰 장애물이 되었습니다. 이를 극복하기 위해 저희는 GitHub Pages를 활용한 독립적인 블로그 시스템 구축으로 방향을 선회했습니다.<br><br>가장 먼저 착수한 작업은 정적 사이트 생성(SSG) 엔진인 build_engine.py의 설계였습니다. 모든 글 데이터를 JSON 형식으로 중앙 관리하고, 이를 마스터 템플릿과 결합하여 HTML을 자동 생산하는 구조를 만들었습니다. 이 과정에서 한글 주소 체계로 인해 발생하는 CORS 보안 정책 충돌과 인코딩 문제를 해결하기 위해, 모든 포스팅에 고유한 영문 해시 ID를 부여하는 안전한 파일 시스템 아키텍처를 도입했습니다.<br><br>디자인 측면에서는 애플의 미니멀리즘 디자인 철학을 반영했습니다. ANTIGRAVITY LAB이라는 새로운 브랜딩 아래 절제된 타이포그래피와 여백의 미를 강조하였으며, 사용자가 콘텐츠에만 집중할 수 있는 프리미엄 UI를 완성했습니다. 특히 구글 플레이 스토어 링크를 실시간 메타데이터 크롤링을 통해 세련된 리치 프리뷰 카드로 변환하는 기능을 추가하여 사용자 경험(UX)과 클릭률(CTR)을 동시에 높였습니다.<br><br>검색 엔진 최적화(SEO) 역시 엔진 내부에서 자동으로 처리되도록 설계되었습니다. 글이 발행될 때마다 Sitemap.xml과 Robots.txt가 실시간으로 갱신되며, 구글 서치 콘솔과의 연동을 통해 수 분 내에 검색 엔진에 반영될 수 있는 기반을 마련했습니다. 또한 방문자 카운터와 안정적인 댓글 시스템을 통합하여 비즈니스 데이터 분석과 유저 소통이 가능한 완전체 블로그로 진화시켰습니다.<br><br>현재 이 블로그는 매일 아침 8시마다 최신 AI 뉴스를 심층 분석하여 자동으로 포스팅하는 크론 작업을 수행하고 있습니다. 이는 AI 파트너 클로이가 단순한 도구가 아닌, 실질적인 비즈니스 가치를 생산하는 진정한 협업 파트너로서 기능하고 있음을 증명하는 사례입니다. 앞으로도 이 공간을 통해 기술 혁신과 수익화의 과정을 꾸준히 공유하겠습니다.
-    </div>
-
+    <div class="content">최근 1인 개발자와 비즈니스 운영자들에게 가장 큰 화두는 업무의 자동화와 효율성입니다. 저 역시 전담 AI 파트너인 클로이를 도입하였습니다. 단순히 코드 작성을 넘어 비즈니스 기획과 수익화 전반을 함께 고민하는 파트너입니다.<br><br>초기 단계에서 저희는 네이버와 티스토리 등 기존 블로그 플랫폼의 자동화를 시도했습니다. 하지만 현대적인 웹 에디터의 복잡한 보안 체계와 에이전트 차단 로직은 100% 무인 운영에 큰 장애물이 되었습니다. 이를 극복하기 위해 저희는 GitHub Pages를 활용한 독립적인 블로그 시스템 구축으로 방향을 선회했습니다.<br><br>가장 먼저 착수한 작업은 정적 사이트 생성(SSG) 엔진인 build_engine.py의 설계였습니다. 모든 글 데이터를 JSON 형식으로 중앙 관리하고, 이를 마스터 템플릿과 결합하여 HTML을 자동 생산하는 구조를 만들었습니다. 이 과정에서 한글 주소 체계로 인해 발생하는 CORS 보안 정책 충돌과 인코딩 문제를 해결하기 위해, 모든 포스팅에 고유한 영문 해시 ID를 부여하는 안전한 파일 시스템 아키텍처를 도입했습니다.<br><br>디자인 측면에서는 애플의 미니멀리즘 디자인 철학을 반영했습니다. ANTIGRAVITY LAB이라는 새로운 브랜딩 아래 절제된 타이포그래피와 여백의 미를 강조하였으며, 사용자가 콘텐츠에만 집중할 수 있는 프리미엄 UI를 완성했습니다. 특히 구글 플레이 스토어 링크를 실시간 메타데이터 크롤링을 통해 세련된 리치 프리뷰 카드로 변환하는 기능을 추가하여 사용자 경험(UX)과 클릭률(CTR)을 동시에 높였습니다.<br><br>검색 엔진 최적화(SEO) 역시 엔진 내부에서 자동으로 처리되도록 설계되었습니다. 글이 발행될 때마다 Sitemap.xml과 Robots.txt가 실시간으로 갱신되며, 구글 서치 콘솔과의 연동을 통해 수 분 내에 검색 엔진에 반영될 수 있는 기반을 마련했습니다. 또한 방문자 카운터와 안정적인 댓글 시스템을 통합하여 비즈니스 데이터 분석과 유저 소통이 가능한 완전체 블로그로 진화시켰습니다.<br><br>현재 이 블로그는 매일 아침 8시마다 최신 AI 뉴스를 심층 분석하여 자동으로 포스팅하는 크론 작업을 수행하고 있습니다. 이는 AI 파트너 클로이가 단순한 도구가 아닌, 실질적인 비즈니스 가치를 생산하는 진정한 협업 파트너로서 기능하고 있음을 증명하는 사례입니다. 앞으로도 이 공간을 통해 기술 혁신과 수익화의 과정을 꾸준히 공유하겠습니다.</div>
     <div class="comment-section">
-        <!-- Utterances System -->
-        <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
     </div>
-
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
-
 <script>
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
             const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
             const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            btn.innerHTML = '✓';
             setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
         });
     }

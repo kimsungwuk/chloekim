@@ -19,26 +19,10 @@
     <meta property="og:type" content="article">
     
     <style>
-        :root { 
-            --bg-color: #ffffff; 
-            --text-primary: #1d1d1f; 
-            --text-secondary: #86868b; 
-            --accent-color: #0071e3; 
-            --card-bg: #f5f5f7;
-            --code-bg: #f5f5f7;
-        }
-        
+        :root { --bg-color: #ffffff; --text-primary: #1d1d1f; --text-secondary: #86868b; --accent-color: #0066cc; --card-bg: #f5f5f7; }
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 0; line-height: 1.6; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.6; 
-        }
-
         header {
             position: sticky;
             top: 0;
@@ -49,92 +33,33 @@
             padding: 16px 0;
             text-align: center;
         }
-
-        header h1 {
-            font-size: 14px;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #1d1d1f;
-        }
+        header h1 { font-size: 14px; font-weight: 700; margin: 0; letter-spacing: 0.15em; text-transform: uppercase; color: #1d1d1f; }
+        header .container { padding: 0 20px; } /* Header container padding reset to match home */
 
         .container { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
         .meta { font-size: 14px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
         h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 40px 0; line-height: 1.1; }
         .content { font-size: 21px; font-weight: 400; letter-spacing: -0.01em; color: #333; }
         
-        /* Premium Code Block */
-        .code-container {
-            background: var(--code-bg);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin: 20px 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .code-container { background: #f5f5f7; border-radius: 16px; padding: 20px 24px; margin: 20px 0; position: relative; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(0,0,0,0.05); }
+        .code-text { font-family: "SF Mono", monospace; font-size: 16px; color: #444; margin: 0; }
+        .copy-btn { background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-secondary); }
 
-        .code-text {
-            font-family: "SF Mono", "Fira Code", monospace;
-            font-size: 16px;
-            color: #444;
-            margin: 0;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .copy-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-        }
-
-        .copy-btn:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
-        .copy-btn svg { width: 20px; height: 20px; }
-
-        /* Premium App Store Style Card */
-        .rich-link-card { 
-            background: var(--card-bg); 
-            border-radius: 22px; 
-            overflow: hidden; 
-            margin: 40px 0; 
-            max-width: 100%; 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .rich-link-card { background: var(--card-bg); border-radius: 22px; overflow: hidden; margin: 40px 0; transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
         .rich-link-card:hover { transform: scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .rich-link-card a { text-decoration: none; color: inherit; display: block; }
-        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; background-color: #000; }
+        .card-image { width: 100%; height: 320px; background-size: cover; background-position: center; }
         .card-body { padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; }
-        .card-info { flex: 1; margin-right: 20px; }
-        .card-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-        .card-subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; }
-        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.2s; }
-        .btn-get:hover { background: #0077ed; }
+        .btn-get { background: #0071e3; color: #ffffff; font-size: 14px; font-weight: 700; padding: 8px 18px; border-radius: 20px; text-transform: uppercase; }
 
-        .back-link { display: block; margin-top: 80px; text-decoration: none; color: var(--accent-color); font-weight: 500; font-size: 17px; }
+        .back-link { display: block; margin-top: 60px; text-decoration: none; color: var(--accent-color); font-weight: 500; }
         .comment-section { margin-top: 80px; padding-top: 40px; border-top: 1px solid #e5e5e5; }
         .visitor-badge { margin-bottom: 20px; }
         img { max-width: 100%; height: auto; display: block; }
+        
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        @media (max-width: 734px) {
-            h1 { font-size: 34px; }
-            .card-image { height: 200px; }
-            .card-body { flex-direction: column; text-align: center; }
-            .card-info { margin-right: 0; margin-bottom: 15px; }
-        }
+        @media (max-width: 734px) { h1 { font-size: 34px; } .card-image { height: 200px; } }
     </style>
 </head>
 <body>
@@ -146,38 +71,21 @@
 <div class="container">
     <div class="meta">{{category}} · {{date}}</div>
     <h1>{{title}}</h1>
-    
-    <div class="visitor-badge">
-        {{visitor_badge}}
-    </div>
-
+    <div class="visitor-badge">{{visitor_badge}}</div>
     {{image_tag}}
-
-    <div class="content">
-        {{content}}
-    </div>
-
+    <div class="content">{{content}}</div>
     <div class="comment-section">
-        <!-- Utterances System -->
-        <script src="https://utteranc.es/client.js"
-                repo="kimsungwuk/chloekim"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
+        <script src="https://utteranc.es/client.js" repo="kimsungwuk/chloekim" issue-term="pathname" theme="github-light" async></script>
     </div>
-
     <a href="../index.html" class="back-link">← 모든 포스팅 보기</a>
 </div>
-
 <script>
     function copyToClipboard(id) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
             const btn = document.querySelector(`button[onclick="copyToClipboard('${id}')"]`);
             const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            btn.innerHTML = '✓';
             setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
         });
     }
